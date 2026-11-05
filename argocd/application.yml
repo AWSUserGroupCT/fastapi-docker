@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-human
+  namespace: argocd
+  finalizers:
+    # Delete the app's Kubernetes resources when this Application is deleted.
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/AWSUserGroupCT/fastapi-docker.git
+    targetRevision: main
+    path: chart/hello-human
+    helm:
+      releaseName: hello-human
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hello-human
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
