@@ -1,9 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: hello_human
-  tag: latest
-  # Image is loaded into kind with `kind load`, so never pull from a registry.
+  repository: docker.io/dmevanct/fastapi-docker
+  tag: v0.1
   pullPolicy: IfNotPresent
 
 containerPort: 8000
