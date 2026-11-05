@@ -11,7 +11,7 @@ def get_root():
 
 @app.post("/api/workers/")
 def post_root(user: UserInfo):
-    return {"message": f"Hello {user}"}
+    return {"message": user}
     
 @app.get("/api/workers/", response_model=WorkerResponse)
 def get_worker():
@@ -21,4 +21,4 @@ def get_worker():
         age=22,
         report_to="John",
     )
-    return {"message": f"Hello {user.name}", "user": user}
+    return {"message": { "user": user }}
