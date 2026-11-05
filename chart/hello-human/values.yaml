@@ -1,0 +1,46 @@
+replicaCount: 1
+
+image:
+  repository: hello_human
+  tag: latest
+  # Image is loaded into kind with `kind load`, so never pull from a registry.
+  pullPolicy: IfNotPresent
+
+containerPort: 8000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  # Contour in this cluster has no IngressClass configured, so it serves
+  # Ingresses with no class. Set to "contour" if you add an IngressClass.
+  className: ""
+  annotations: {}
+  # Leave host empty to match any hostname (e.g. http://localhost:9090).
+  host: ""
+  path: /api/workers
+  pathType: Prefix
+  tls: []
+  #  - secretName: hello-human-tls
+  #    hosts:
+  #      - hello.example.com
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    memory: 256Mi
+
+podSecurityContext:
+  runAsNonRoot: true
+  # Dockerfile creates user "app" by name; kubelet needs a numeric UID to verify non-root.
+  runAsUser: 999
+  runAsGroup: 999
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop: ["ALL"]
