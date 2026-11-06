@@ -5,6 +5,7 @@ class UserInfo(BaseModel):
     age: int
     position: str
     report_to: str
+    employee_id: int
 
 
 class WorkerResponse(BaseModel):
