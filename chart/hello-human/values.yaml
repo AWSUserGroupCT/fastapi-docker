@@ -13,7 +13,7 @@ service:
 
 ingress:
   enabled: true
-  host: api.pres.labspres.com
+  host: app.pres.labspres.com
   # Served by the AWS Load Balancer Controller. Every Ingress with the same
   # group.name shares one ALB; give each API a unique path and group.order.
   className: alb
