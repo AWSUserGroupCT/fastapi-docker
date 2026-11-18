@@ -21,6 +21,7 @@ iam:
   withOIDC: true                     # required for the addon's IAM role (IRSA)
 
 addons:
+  - name: coredns                    # cluster DNS; kube-dns svc/deployment are missing
   - name: aws-efs-csi-driver
     wellKnownPolicies:
       efsCSIController: true         # creates the IRSA role for efs-csi-controller-sa
