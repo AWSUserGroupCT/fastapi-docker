@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 3
 
 image:
   repository: docker.io/dmevanct/fastapi-docker
@@ -35,15 +35,10 @@ resources:
     memory: 256Mi
 
 volumeMounts:
-  - name: data-volume
-    mountPath: /var/lib/data
   - name: mounted-efs
     mountPath: /mnt/data
 
 volumes:
-  - name: data-volume
-    persistentVolumeClaim:
-      claimName: hello-human
   - name: mounted-efs
     persistentVolumeClaim:
       claimName: hello-human-efs-pvc
@@ -59,9 +54,7 @@ securityContext:
   capabilities:
     drop: ["ALL"]
 
-pvc: 
-  pvc_size: 20Gi
-  pvc_name: 
+
 
 efs_pvc:
   storageClassName: efs-sc
