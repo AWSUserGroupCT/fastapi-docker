@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ printf "%s-%s" (include "hello-human.fullname" .) .Values.pvc.pvc_name | trunc 63 | trimSuffix "-" }}
+  name: {{ include "hello-human.fullname" . }}{{ with .Values.pvc.pvc_name }}-{{ . }}{{ end }}
 spec:
   accessModes:
     - ReadWriteOnce
