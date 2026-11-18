@@ -44,7 +44,7 @@ volumes:
       claimName: hello-human-efs-pvc
 
 podSecurityContext:
-  runAsNonRoot: true
+  runAsNonRoot: false
   # Dockerfile creates user "app" by name; kubelet needs a numeric UID to verify non-root.
   runAsUser: 999
   runAsGroup: 999
