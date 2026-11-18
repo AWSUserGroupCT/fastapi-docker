@@ -30,8 +30,23 @@ resources:
   requests:
     cpu: 50m
     memory: 64Mi
+    ephemeral-storage: "40Gi"
   limits:
     memory: 256Mi
+
+volumeMounts:
+  - name: data-volume
+    mountPath: /var/lib/data
+  - name: mounted-efs
+    mountPath: /mnt/data
+
+volumes:
+  - name: data-volume
+    persistentVolumeClaim:
+      claimName: hello-human
+  - name: mounted-efs
+    persistentVolumeClaim:
+      claimName: hello-human-efs-pvc
 
 podSecurityContext:
   runAsNonRoot: true
@@ -43,3 +58,13 @@ securityContext:
   allowPrivilegeEscalation: false
   capabilities:
     drop: ["ALL"]
+
+pvc: 
+  pvc_size: 20Gi
+  pvc_name: 
+
+efs_pvc:
+  storageClassName: efs-sc
+  fileSystemId: fs-08769f28876908ff7
+  path: /data/fastapi
+  size: 100Gi
