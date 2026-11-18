@@ -30,7 +30,8 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Create a non-root user for security
-RUN groupadd --system app && useradd --system --gid app --no-create-home app
+RUN groupadd --system app && useradd --system --gid app --no-create-home app && \ 
+mkdir -p /data/fastapi
 
 # Copy the uv-managed Python interpreter (the venv symlinks to it)
 COPY --from=builder /python /python

@@ -2,7 +2,7 @@ replicaCount: 3
 
 image:
   repository: docker.io/dmevanct/fastapi-docker
-  tag: v0.3
+  tag: v0.4
   pullPolicy: IfNotPresent
 
 containerPort: 8000
