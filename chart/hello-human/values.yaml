@@ -13,6 +13,7 @@ service:
 
 ingress:
   enabled: true
+  host: api.pres.labspres.com
   # Served by the AWS Load Balancer Controller. Every Ingress with the same
   # group.name shares one ALB; give each API a unique path and group.order.
   className: alb
@@ -24,7 +25,7 @@ ingress:
     alb.ingress.kubernetes.io/healthcheck-path: /health
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
     alb.ingress.kubernetes.io/ssl-redirect: "443"
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:877969058937:certificate/e1d6dace-27fa-4bfa-be9a-2c6cc9f1e359
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:877969058937:certificate/619056d9-9897-4988-8bbe-b3e111dbb006
   # Leave host empty to match any hostname (e.g. http://localhost:9090).
   host: ""
   path: /api/workers
