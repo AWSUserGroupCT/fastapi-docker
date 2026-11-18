@@ -2,6 +2,10 @@
 #   eksctl utils associate-iam-oidc-provider -f eks_config.yml --approve   (or let create addon do it)
 #   eksctl create addon -f eks_config.yml          # aws-efs-csi-driver + aws-ebs-csi-driver + IAM roles
 #   eksctl create nodegroup -f eks_config.yml      # private managed node group
+#   eksctl create iamserviceaccount -f eks_config.yml --approve   # IRSA role for the AWS Load Balancer Controller
+#   helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system \
+#     --set clusterName=hilarious-dubstep-otter --set serviceAccount.create=false \
+#     --set serviceAccount.name=aws-load-balancer-controller
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
@@ -19,6 +23,12 @@ vpc:
 
 iam:
   withOIDC: true                     # required for the addon's IAM role (IRSA)
+  serviceAccounts:
+    - metadata:
+        name: aws-load-balancer-controller
+        namespace: kube-system
+      wellKnownPolicies:
+        awsLoadBalancerController: true   # IRSA role for the ALB controller
 
 addons:
   - name: coredns                    # cluster DNS; kube-dns svc/deployment are missing
