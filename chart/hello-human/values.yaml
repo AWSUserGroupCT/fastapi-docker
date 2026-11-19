@@ -27,6 +27,7 @@ ingress:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
     alb.ingress.kubernetes.io/ssl-redirect: "443"
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:877969058937:certificate/619056d9-9897-4988-8bbe-b3e111dbb006
+    alb.ingress.kubernetes.io/tags: Environment=dev,Team=platform,Project=shared-api
   path: /api/workers
   pathType: Prefix
   tls: []
