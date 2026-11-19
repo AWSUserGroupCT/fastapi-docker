@@ -38,6 +38,7 @@ addons:
   - name: aws-ebs-csi-driver
     wellKnownPolicies:
       ebsCSIController: true         # creates the IRSA role for ebs-csi-controller-sa
+  - name: metrics-server             # needed for kubectl top and HPAs
 
 managedNodeGroups:
   - name: hello-human-private-ng
