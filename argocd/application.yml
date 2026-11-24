@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: hello-human
+  name: hello-human-dev
   namespace: argocd
   finalizers:
     # Delete the app's Kubernetes resources when this Application is deleted.
@@ -13,12 +13,12 @@ spec:
     targetRevision: main
     path: chart/hello-human
     helm:
-      releaseName: hello-human
+      releaseName: hello-human-dev
       valueFiles:
         - values.yaml
   destination:
-    server: https://281C165D7D77C31091F9C9D99982E67E.gr7.us-east-1.eks.amazonaws.com
-    namespace: hello-human
+    server: https://kubernetes.default.svc
+    namespace: hello-human-dev
   syncPolicy:
     automated:
       prune: true

@@ -43,14 +43,6 @@ resources:
   limits:
     memory: 256Mi
 
-volumeMounts:
-  - name: mounted-efs
-    mountPath: /mnt/data
-
-volumes:
-  - name: mounted-efs
-    persistentVolumeClaim:
-      claimName: hello-human-efs-pvc
 
 podSecurityContext:
   runAsNonRoot: false
