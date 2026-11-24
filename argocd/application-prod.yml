@@ -15,7 +15,7 @@ spec:
     helm:
       releaseName: hello-human
       valueFiles:
-        - values-prod.yaml
+        - values-prod.yml
   destination:
     server: https://281C165D7D77C31091F9C9D99982E67E.gr7.us-east-1.eks.amazonaws.com
     namespace: hello-human
